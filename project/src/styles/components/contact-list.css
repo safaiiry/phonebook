@@ -1,0 +1,60 @@
+@import '../variables.css';
+
+.contacts-container {
+  background: var(--surface);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow);
+  overflow: hidden;
+  border: 1px solid var(--border);
+}
+
+.contact-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.contact-table th {
+  background: var(--background);
+  padding: var(--spacing-4);
+  text-align: left;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  border-bottom: 2px solid var(--border);
+}
+
+.contact-table td {
+  padding: var(--spacing-4);
+  border-bottom: 1px solid var(--border);
+  color: var(--text-primary);
+}
+
+.contact-table tr:hover {
+  background: var(--background);
+}
+
+.contact-table tr:last-child td {
+  border-bottom: none;
+}
+
+.action-buttons {
+  display: flex;
+  gap: var(--spacing-2);
+}
+
+.contact-name {
+  font-weight: 500;
+  color: var(--primary);
+}
+
+.contact-address {
+  color: var(--text-secondary);
+  font-size: 0.875rem;
+}
+
+.contact-phone {
+  font-family: monospace;
+  color: var(--text-secondary);
+}
