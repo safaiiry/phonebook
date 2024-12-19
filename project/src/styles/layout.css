@@ -40,3 +40,15 @@
   background: var(--primary);
   border-radius: var(--radius);
 }
+
+.header-actions {
+  display: flex;
+  gap: var(--spacing-3);
+  align-items: center;
+}
+
+.header-actions .button {
+  min-width: 160px;
+  height: 40px;
+  justify-content: center;
+}

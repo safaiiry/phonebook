@@ -1,6 +1,7 @@
-import React from 'react';
 import { Search } from 'lucide-react';
 import { ContactFilters } from '../../types/contact';
+import { AutocompleteInput } from './AutoCompleteInput';
+import { TABLE_NAMES } from '../../types/referenceData';
 
 interface SearchPanelProps {
   filters: ContactFilters;
@@ -11,61 +12,49 @@ interface SearchPanelProps {
 
 export function SearchPanel({ filters, onFiltersChange, onSearch, loading }: SearchPanelProps) {
   const handleInputChange = (field: keyof ContactFilters) => (
-    e: React.ChangeEvent<HTMLInputElement>
+    value : string
   ) => {
-    onFiltersChange({ ...filters, [field]: e.target.value });
+    onFiltersChange({ ...filters, [field]: value });
   };
 
   return (
     <div className="search-panel">
       <div className="search-grid">
-        <div className="search-field">
-          <label className="search-label">Фамилия</label>
-          <input
-            type="text"
-            className="search-input"
-            value={filters.surname || ''}
-            onChange={handleInputChange('surname')}
-            placeholder="Введите фамилию"
-          />
-        </div>
-        <div className="search-field">
-          <label className="search-label">Имя</label>
-          <input
-            type="text"
-            className="search-input"
-            value={filters.name || ''}
-            onChange={handleInputChange('name')}
-            placeholder="Введите имя"
-          />
-        </div>
-        <div className="search-field">
-          <label className="search-label">Отчество</label>
-          <input
-            type="text"
-            className="search-input"
-            value={filters.otch || ''}
-            onChange={handleInputChange('otch')}
-            placeholder="Введите отчество"
-          />
-        </div>
-        <div className="search-field">
-          <label className="search-label">Улица</label>
-          <input
-            type="text"
-            className="search-input"
-            value={filters.street || ''}
-            onChange={handleInputChange('street')}
-            placeholder="Введите улицу"
-          />
-        </div>
+        <AutocompleteInput
+          label='Фамилия'
+          value={filters.surname || ''}
+          onChange={handleInputChange('surname')}
+          tableName={TABLE_NAMES.SURNAMES}
+          placeholder='Введите фамилию'
+        />
+        <AutocompleteInput
+          label='Имя'
+          value={filters.name || ''}
+          onChange={handleInputChange('name')}
+          tableName={TABLE_NAMES.FIRST_NAMES}
+          placeholder='Введите имя'
+        />
+        <AutocompleteInput
+          label='Отчество'
+          value={filters.otch || ''}
+          onChange={handleInputChange('otch')}
+          tableName={TABLE_NAMES.OTCHS}
+          placeholder='Введите отчество'
+        />
+        <AutocompleteInput
+          label='Улица'
+          value={filters.street || ''}
+          onChange={handleInputChange('street')}
+          tableName={TABLE_NAMES.STREETS}
+          placeholder='Введите улицу'
+        />
         <div className="search-field">
           <label className="search-label">Дом</label>
           <input
             type="text"
             className="search-input"
             value={filters.house || ''}
-            onChange={handleInputChange('house')}
+            onChange={(e) => handleInputChange('house')(e.target.value)}
             placeholder="Введите номер дома"
           />
         </div>
@@ -75,7 +64,7 @@ export function SearchPanel({ filters, onFiltersChange, onSearch, loading }: Sea
             type="text"
             className="search-input"
             value={filters.corp || ''}
-            onChange={handleInputChange('corp')}
+            onChange={(e) => handleInputChange('corp')(e.target.value)}
             placeholder="Введите корпус"
           />
         </div>
@@ -85,7 +74,7 @@ export function SearchPanel({ filters, onFiltersChange, onSearch, loading }: Sea
             type="text"
             className="search-input"
             value={filters.apart || ''}
-            onChange={handleInputChange('apart')}
+            onChange={(e) => handleInputChange('apart')(e.target.value)}
             placeholder="Введите квартиру"
           />
         </div>
@@ -95,7 +84,7 @@ export function SearchPanel({ filters, onFiltersChange, onSearch, loading }: Sea
             type="text"
             className="search-input"
             value={filters.tel || ''}
-            onChange={handleInputChange('tel')}
+            onChange={(e) => handleInputChange('tel')(e.target.value)}
             placeholder="Введите телефон"
           />
         </div>
